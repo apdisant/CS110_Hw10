@@ -31,9 +31,9 @@ public class warTester
         while(r == 1)
         {
             war.playHand();
-            String s1 = war.toString(1);
-            String s2 = war.toString(2);
-            System.out.println("1: " + s1 + "\n 2: " + s2);
+            //String s1 = war.toString(1);
+            //String s2 = war.toString(2);
+            //System.out.println("1: " + s1 + "\n 2: " + s2);
             Scanner sc = new Scanner(System.in);
             while(!sc.nextLine().equals(""));
         }
