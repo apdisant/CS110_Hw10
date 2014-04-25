@@ -55,6 +55,57 @@ public class HalfStacks extends Deck
         p2Queue.enqueue(c2);
     }
 
+    public int checkSize(int player)
+    {
+        int n = 0;
+        if (player == 1)
+        {
+            //System.out.println("player 1's cards: ");
+            int r = 1;
+            n = 2;
+            Card cFirst = ((Card)p1Queue.dequeue());
+            p1Queue.enqueue(cFirst);
+            while(r == 1)
+            {
+                Card c1 = ((Card)p1Queue.peek());
+                if (c1.equals(cFirst))
+                {
+                    r = 0;
+                }
+                else
+                {
+                    p1Queue.dequeue();
+                    p1Queue.enqueue(c1);
+                }
+                n++;
+            }
+        }
+        else if (player == 2)
+        {
+            //System.out.println("player 2's cards: ");
+            int r = 1;
+            n = 2;
+            Card cFirst = ((Card)p2Queue.dequeue());
+            p2Queue.enqueue(cFirst);
+            while(r == 1)
+            {
+                Card c2 = ((Card)p2Queue.peek());
+                if (c2.equals(cFirst))
+                {
+                    r = 0;
+                }
+                else
+                {
+                    p2Queue.dequeue();
+                    p2Queue.enqueue(c2);
+                }
+                n++;
+            }
+        }
+        return (n - 2) ;
+    }
+
+
     public boolean isEmpty(int player)
     {
         boolean t = false;
@@ -92,7 +143,7 @@ public class HalfStacks extends Deck
         String out = "";
         if (player == 1)
         {
-            System.out.println("player 1's cards: ");
+            //System.out.println("player 1's cards: ");
             int r = 1;
             int n = 2;
             Card cFirst = ((Card)p1Queue.dequeue());
@@ -116,7 +167,7 @@ public class HalfStacks extends Deck
         }
         else if (player == 2)
         {
-            System.out.println("player 2's cards: ");
+            //System.out.println("player 2's cards: ");
             int r = 1;
             int n = 2;
             Card cFirst = ((Card)p2Queue.dequeue());

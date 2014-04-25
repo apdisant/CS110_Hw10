@@ -11,7 +11,6 @@ public class halfStacksTest
         HalfStacks h1 = new HalfStacks();
         h1.newDecks();
 
-        /*
         Card c1 = ((Card)h1.player1play());
         h1.player2addCard(c1);
         System.out.println(c1.toString());
@@ -19,15 +18,17 @@ public class halfStacksTest
         h1.player2addCard(c1);
         c1 = h1.player1play();
         h1.player2addCard(c1);
+        System.out.println(h1.checkSize(2));
         System.out.println(h1.toString(2));
         System.out.println(" ");
         //System.out.println(h1.toString(2));
 
+        System.out.println(h1.checkSize(1));
         System.out.println(h1.toString(1));
         System.out.println(" ");
         //System.out.println(h1.toString(2));
-        //*/
         
+        /*
         
         //War game test
         while (r == 1)
