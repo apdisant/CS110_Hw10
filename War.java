@@ -19,7 +19,7 @@ public class War extends HalfStacks
         Card c1 = ((Card)this.h1.p1Queue.dequeue());
         Card c2 = ((Card)this.h1.p2Queue.dequeue());
         int hw = this.compareHands(c1,c2);
-        System.out.println("hw: " + hw);
+        //System.out.println("hw: " + hw);
         if (console)
         {
             System.out.println(" ");
@@ -113,6 +113,21 @@ public class War extends HalfStacks
         int hw = 0;
         return hw;
     }
+    /*
+    public int checkWinner()
+    {
+        int winner = 0;
+        if (p1Queue.isEmpty)
+        {
+            winner = 2;
+        }
+        else if (p2Queue.isEmpty())
+        {
+            winner = 1;
+        }
+        return winner;
+    }
+    */
     public int checkSize(int player)
     {
         int out = 0;
