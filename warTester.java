@@ -32,6 +32,7 @@ public class warTester
         {
             while(r == 1)
             {
+                System.out.println(war.getCardPic(1));
                 war.playHand();
                 //String s1 = war.toString(1);
                 //String s2 = war.toString(2);

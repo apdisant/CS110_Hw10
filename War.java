@@ -62,6 +62,37 @@ public class War extends HalfStacks
         }
         return w;
     }
+    public String getCardPic(int player)
+    {
+        String out = "";
+        Card c1 = new Card(1,1);
+        if (player == 1) 
+        {
+            c1 = ((Card)h1.p1Queue.peek()); 
+        }
+        if (player == 2) 
+        {
+            c1 = ((Card)h1.p2Queue.peek()); 
+        }
+        int suit = c1.getSuit();
+        String ss = "";
+        switch (suit)
+        {
+            case 0: ss = "s";
+                    break;
+            case 1: ss = "h";
+                    break;
+            case 2: ss = "d";
+                    break;
+            case 3: ss = "c";
+                    break;
+        }
+
+        String rank = c1.getRankAsString().toLowerCase();
+
+        out = rank + ss + ".jpg";
+        return out;
+    }
 
     public void playWar(Card c1, Card c2)
     {

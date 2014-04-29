@@ -4,12 +4,15 @@ import java.awt.event.*;
 
 public class WarGUI extends JFrame
 {
+    private War war;
     private JPanel panel = new JPanel();
     private int p1Size = 26;
     private int p2Size = 26;
     private int currentLeader;
     private int numTurns;
-    private War war;
+    private JLabel label1, label2, label3, label4, label5, label6, label7, label8, label12;
+    private JButton button9,button10, button11;
+    private String b,c1,c2;
 
     public WarGUI()
     {
@@ -23,38 +26,31 @@ public class WarGUI extends JFrame
         setSize(1200,800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        buildPanel();
-
-        add(panel);
-        setVisible(true);
-    }
-
-    public void buildPanel()
-    {
-        String b = "cardPics/back.jpg";
-        String c1 = "cardPics/2h.jpg";
-        String c2 = "cardPics/2s.jpg";
+        b = "cardPics/back.jpg";
+        c1 = "cardPics/"+war.getCardPic(1);
+        c2 = "cardPics/2s.jpg";
 
         ImageIcon back = new ImageIcon(b);
         ImageIcon card1 = new ImageIcon(c1);
         ImageIcon card2 = new ImageIcon(c2);
 
-        JLabel label1 = new JLabel("",back,JLabel.LEFT);
-        JLabel label2 = new JLabel("");
-        JLabel label3 = new JLabel("",card1,JLabel.CENTER);
-        JLabel label4 = new JLabel("",card2,JLabel.CENTER);
-        JLabel label5 = new JLabel("");
-        JLabel label6 = new JLabel("",back,JLabel.CENTER);
-        JLabel label7 = new JLabel("P1 remaining:");
-        JLabel label8 = new JLabel("current leader:");
-        JLabel label9 = new JLabel("turns so far:");
-        JButton button10 = new JButton("next turn");
-        JLabel label11 = new JLabel("auto run");
-        JLabel label12 = new JLabel("p2 cards remaining: " + p2Size);
 
-        button10.setActionCommand("nextTurn");
+        label1 = new JLabel("",back,JLabel.LEFT);
+        label2 = new JLabel("");
+        label3 = new JLabel("",card1,JLabel.CENTER);
+        label4 = new JLabel("",card2,JLabel.CENTER);
+        label5 = new JLabel("");
+        label6 = new JLabel("",back,JLabel.CENTER);
+        label7 = new JLabel("P1 remaining:");
+        label8 = new JLabel("current leader:");
+        button9 = new JButton("turns so far:");
+        button10 = new JButton("next turn");
+        button11 = new JButton("auto run");
+        label12 = new JLabel("p2 cards remaining: " + p2Size);
 
+        //button10.setActionCommand("nextTurn");
         button10.addActionListener(new PlayRound());
+
 
         panel.add(label1);
         panel.add(label2);
@@ -64,10 +60,15 @@ public class WarGUI extends JFrame
         panel.add(label6);
         panel.add(label7);
         panel.add(label8);
-        panel.add(label9);
+        panel.add(button9);
         panel.add(button10);
-        panel.add(label11);
+        panel.add(button11);
         panel.add(label12);
+        this.getContentPane().add(panel);
+        pack();
+
+        add(panel);
+        setVisible(true);
     }
 
     private class PlayRound implements ActionListener
@@ -76,14 +77,25 @@ public class WarGUI extends JFrame
         {
             if (e.getSource() instanceof JButton)
             {
+                //JButton b = (JButton)(e.getSource());
                 if (war.checkWinner() > 0)
                 {
                 }
                 else
                 {
+                    //panel.remove(label12);
                     war.playHand();
                     p1Size = war.checkSize(1);
                     p2Size = war.checkSize(2);
+                    label7.setText("p1 cards remaining:\n" + p1Size);
+                    label12.setText("p2 cards remaining:\n" + p2Size);
+                    c1 = "cardPics/"+war.getCardPic(1);
+                    ImageIcon card1 = new ImageIcon(c1);
+                    label3.setIcon(card1);
+                    c2 = "cardPics/"+war.getCardPic(2);
+                    ImageIcon card2 = new ImageIcon(c2);
+                    label4.setIcon(card2);
+                    //panel.add(label12);
                 }
             }
         }
