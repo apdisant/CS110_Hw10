@@ -23,7 +23,7 @@ public class WarGUI extends JFrame
     private int pw = 0; //0 = normal hand 1 = war
     private String c1,c2; 
     private Card cWar1, cWar2; // cards for war
-    private int debug = 1; //variable to turn on and off debugging easily
+    private int debug = 0; //variable to turn on and off debugging easily
 
     public WarGUI()
     {
