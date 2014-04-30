@@ -175,7 +175,6 @@ public class WarGUI extends JFrame
     /*
      * The new game class starts a new game of war in the GUI
      */
-    
     private class NewGame implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
