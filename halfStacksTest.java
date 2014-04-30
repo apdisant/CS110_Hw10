@@ -1,7 +1,7 @@
 import java.util.Scanner;
 //Alex DiSanto
 //cs110
-//half stack tester
+//half stack tester also includes first working attempt at a game of war
 public class halfStacksTest
 {
     public static void main(String [] args)

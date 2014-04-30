@@ -5,6 +5,8 @@ import java.awt.event.*;
 //cs110
 //hw10 War gui class and tester
 //Just a warning if you play hands too fast it will mess up the number of cards output but should not mess up the actual game
+/**This class runs a game of war using the War class in a GUI
+ */
 public class WarGUI extends JFrame
 {
     private War war;
@@ -52,7 +54,7 @@ public class WarGUI extends JFrame
         button9.addActionListener(new PlayRound()); //make buttons work
         button10.addActionListener(new NewGame());
 
-        panel.add(label1);
+        panel.add(label1); //add labels and buttons to the gui screen
         panel.add(label2);
         panel.add(label3);
         panel.add(label4);
@@ -91,14 +93,14 @@ public class WarGUI extends JFrame
                     label4.setIcon(card2);
                     label2.setIcon(blank);
                     label5.setIcon(blank);
+
                     if (ng == 1)
                     {
-                            cWar1 = war.getCard(1);
+                            cWar1 = war.getCard(1); //read top card for war
                             cWar2 = war.getCard(2);
                             if (debug == 1) System.out.println("cwar1: "+cWar1.toString()+" cwar2: "+ cWar2.toString());
                     }
 
-                    //panel.remove(label12);
                     if (pw == 0)
                     {
                         int hw = war.playHand(); //play round of war
@@ -113,8 +115,8 @@ public class WarGUI extends JFrame
                         else if (hw == 3)
                         {
                             label11.setText("War!!!");
-                            pw = 1; 
-                            ng = 0;
+                            pw = 1; //play war set
+                            ng = 0; //do not re grab top cards as they are new now
                         }
                     }
                     else if (pw == 1)
@@ -150,6 +152,9 @@ public class WarGUI extends JFrame
                     if (debug == 1) System.out.println("p1: "+p1Size+" p2: "+p2Size);
                     label7.setText("p1 cards remaining:\n" + p1Size);
                     label12.setText("p2 cards remaining:\n" + p2Size);
+                    if (p1Size > p2Size) label8.setText("Current leader: p1");
+                    else if (p2Size > p1Size) label8.setText("Current leader: p2"); 
+                    else label8.setText("The game is a tie");
                     //panel.add(label12);
                 }
                 catch (QueueException we)
