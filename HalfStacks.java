@@ -8,12 +8,12 @@ public class HalfStacks extends Deck
 {
     private int i = 0;
     private boolean debug = false;
-    public QueueInterface p1Queue = new QueueReferenceBased();
+    public QueueInterface p1Queue = new QueueReferenceBased(); //queues for each player's cards
     public QueueInterface p2Queue = new QueueReferenceBased();
 
     public void newDecks()
     {
-        Deck deck = new Deck();
+        Deck deck = new Deck(); //create new deck of 52 cards
         deck.freshDeck();
         deck.shuffle();
         p1Queue.dequeueAll();
@@ -120,6 +120,10 @@ public class HalfStacks extends Deck
                 }
                 n++;
             }
+        }
+        else
+        {
+           System.out.println("Enter 1 or 2");
         }
         return (n - 2) ;
     }

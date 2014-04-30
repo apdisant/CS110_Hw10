@@ -1,5 +1,8 @@
 import java.util.ArrayList;
-
+//Alex DiSanto
+//cs110
+/**This class is deprecated by HalfStacks
+ */
 public class testDeck 
 {
    public static void main(String [] args) 
