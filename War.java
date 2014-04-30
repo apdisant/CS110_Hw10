@@ -2,19 +2,29 @@ import java.util.ArrayList;
 //Alex DiSanto
 //CS110
 //Guts of card game war
+/**
+ * The war class runs a game of war
+ */
 public class War extends HalfStacks
 {
     private int w = 0;
     private boolean console = false; // allows you to select wether using console or GUI
     private HalfStacks h1 = new HalfStacks();
-    private int debug = 1;
+    private int debug = 0; //set debug output
     private ArrayList<Card> warStack = new ArrayList<Card>();
     
+    /**
+     * The freshGame method redeals the war decks
+     */
     public void freshGame()
     {
         h1.newDecks();
     }
 
+    /**
+     * the plaHand method plays a hand of war
+     * @return int winner of hand
+     */
     public int playHand()
     {
         //Card c1 = h1.player1play();
@@ -47,12 +57,16 @@ public class War extends HalfStacks
         else
         {
             if (console) System.out.println("war");
-            //this.getCard(c1,c2);
+            if (console) this.playWar(c1,c2);
             hw = 3;
         }
         return hw;
     }
 
+    /**
+     * The checkWinner method tells you who the winner is
+     * @return int winner of game
+     */
     public int checkWinner()
     {
         if (h1.isEmpty(1))
@@ -66,6 +80,11 @@ public class War extends HalfStacks
         }
         return w;
     }
+    /**
+     * The getCard method returns current top card
+     * @param int player 1 or 2
+     * @return Card top card of selected player
+     */
     public Card getCard(int player)
     {
         Card out = new Card(1,1);
@@ -84,6 +103,11 @@ public class War extends HalfStacks
         return out;
     }
 
+    /**
+     * the getCardPic method returns a string referencing the name of the picture for cards
+     * @param int player 1 or 2
+     * @return String String that references card picture
+     */
     public String getCardPic(int player)
     {
         String out = "";
@@ -116,6 +140,12 @@ public class War extends HalfStacks
         return out;
     }
 
+    /**
+     * the playWar method plays a round of war
+     * @param Card c1 player one's card
+     * @param Card c2 player two's card
+     * @return int winner of hand
+     */
     public int playWar(Card c1, Card c2)
     {
         int hw = 0;
@@ -189,17 +219,26 @@ public class War extends HalfStacks
         }
         else
         {
-                //this.playWar(c1,c2);
+                if (console) this.playWar(c1,c2);
                 hw = 3;
         }
         return hw;
     }
+    /**
+     * simple method for fixing an error with running back to back wars
+     */
     public void warFixer()
     {
         warStack.remove(0);
         warStack.remove(1);
     }
 
+    /**
+     * method to compare two cards
+     * @param Card c1 player one's card
+     * @param Card c2 player two's card
+     * @return int winner of hand
+     */
     public int compareHands(Card c1, Card c2)
     {
         int hw = 0;
@@ -225,21 +264,11 @@ public class War extends HalfStacks
         }
         return hw;
     }
-    /*
-    public int checkWinner()
-    {
-        int winner = 0;
-        if (p1Queue.isEmpty)
-        {
-            winner = 2;
-        }
-        else if (p2Queue.isEmpty())
-        {
-            winner = 1;
-        }
-        return winner;
-    }
-    */
+    /**
+     * checks size of selected player's stack
+     * @param int player selection 1 or 2
+     * @return int size
+     */
     public int checkSize(int player)
     {
         int out = 0;
@@ -253,6 +282,11 @@ public class War extends HalfStacks
         }
         return out;
     }
+    /**
+     * returns a String that describes a player's deck
+     * @param int player selection 1 or 2
+     * @return String String of all cards in a deck
+     */
     public String toString(int player)
     {
         String out = " ";
@@ -265,5 +299,12 @@ public class War extends HalfStacks
             out = h1.toString(2);
         }
         return out;
+    }
+    /**
+     * Sets configuration for running in console if called
+     */
+    public void setConsole()
+    {
+        this.console = true;
     }
 }

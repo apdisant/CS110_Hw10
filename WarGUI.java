@@ -1,33 +1,36 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+//Alex DiSanto
+//cs110
+//hw10 War gui class and tester
+//Just a warning if you play hands too fast it will mess up the number of cards output but should not mess up the actual game
 public class WarGUI extends JFrame
 {
     private War war;
-    private JPanel panel = new JPanel();
-    private int p1Size = 26;
+    private JPanel panel = new JPanel(); // initiate GUI main panel
+    private int p1Size = 26; // set starting deck sizes
     private int p2Size = 26;
-    private int ng = 1;
-    private int currentLeader, numTurns;
-    private JLabel label1, label2, label3, label4, label5, label6, label7, label8, label11, label12;
-    private JButton button9,button10, button11;
-    private ImageIcon back = new ImageIcon("cardPics/back.jpg");
+    private int ng = 1; // variable for war grab cards or not
+    private int currentLeader, numTurns; // variables self explanatory
+    private JLabel label1, label2, label3, label4, label5, label6, label7, label8, label11, label12; //init labels
+    private JButton button9,button10, button11; // init buttons
+    private ImageIcon back = new ImageIcon("cardPics/back.jpg"); // init images
     private ImageIcon blank = new ImageIcon("cardPics/blank.jpg");
     private ImageIcon none = new ImageIcon("cardPics/none.jpg");
     private int pw = 0; //0 = normal hand 1 = war
-    private String c1,c2;
-    private Card cWar1, cWar2;
+    private String c1,c2; 
+    private Card cWar1, cWar2; // cards for war
     private int debug = 1; //variable to turn on and off debugging easily
 
     public WarGUI()
     {
         int warOn = 1;
         int winner = 0;
-        war = new War();
+        war = new War(); // start the game
         war.freshGame();
         
-        panel.setLayout(new GridLayout(2,6,2,2));
+        panel.setLayout(new GridLayout(2,6,2,2)); // set up GUI
         panel.setBackground(Color.white);
         setTitle("War!");
         setSize(1200,800);
@@ -39,16 +42,15 @@ public class WarGUI extends JFrame
         label4 = new JLabel("",blank,JLabel.CENTER);
         label5 = new JLabel("");
         label6 = new JLabel("",back,JLabel.CENTER);
-        label7 = new JLabel("P1 remaining:");
+        label7 = new JLabel("P1 remaining: " + p1Size);
         label8 = new JLabel("current leader:");
-        button9 = new JButton("turns so far:");
-        button10 = new JButton("next turn");
+        button9 = new JButton("Next Turn");
+        button10 = new JButton("New Game");
         label11 = new JLabel("This round's winner: ");
-        label12 = new JLabel("p2 cards remaining: " + p2Size);
+        label12 = new JLabel("p2 remaining: " + p2Size);
 
-        //button10.setActionCommand("nextTurn");
-        button10.addActionListener(new PlayRound());
-
+        button9.addActionListener(new PlayRound()); //make buttons work
+        button10.addActionListener(new NewGame());
 
         panel.add(label1);
         panel.add(label2);
@@ -69,6 +71,9 @@ public class WarGUI extends JFrame
         setVisible(true);
     }
 
+    /**
+     * The PlayRound class plays a round of the game of war
+     */
     private class PlayRound implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
@@ -149,7 +154,7 @@ public class WarGUI extends JFrame
                 }
                 catch (QueueException we)
                 {
-                    label1.setText("Game");
+                    label1.setText("Game"); //clear board and display game over message
                     label1.setIcon(none);
                     label2.setText("Over");
                     label2.setIcon(none);
@@ -165,6 +170,27 @@ public class WarGUI extends JFrame
                     if (winner == 2) label6.setText("Player 2!");
                 }
             }
+        }
+    }
+    /*
+     * The new game class starts a new game of war in the GUI
+     */
+    
+    private class NewGame implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            war.freshGame();
+            label1.setIcon(back);
+            label2.setIcon(blank);
+            label3.setIcon(blank);
+            label4.setIcon(blank);
+            label5.setIcon(blank);
+            label6.setIcon(back);
+            p1Size = 26;
+            p2Size = 26;
+            label12.setText("p2 remaining: " + p2Size);
+            label7.setText("p1 remaining: " + p1Size);
         }
     }
 
